@@ -29,5 +29,13 @@ public class MemberServiceImpl implements MemberService{
 		mdao.insertMember(vo);
 	}
 
+	@Override
+	public MemberVO memberLogin(MemberVO vo) {
+		logger.debug(" memberLogin(MemberVO vo) 실행 ");
+		MemberVO resultVO = mdao.loginMember(vo);
+		logger.debug(" 로그인 처리 완료 ! ");
+		return resultVO;
+	}
+
 	
 }

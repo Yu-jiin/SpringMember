@@ -1,5 +1,8 @@
 package com.itwillbs.member.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,4 +39,22 @@ public class MemberDAOImpl implements MemberDAO{
 		logger.debug(" mysql insertMember 실행 완료 ");
 	}
 
+	@Override
+	public MemberVO loginMember(String userid, String userpw) {
+		logger.debug(" loginMember(String userid, String userpw) 호출 ");
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", userid);
+		paramMap.put("userpw", userpw);
+		MemberVO resultVO = sqlSession.selectOne(NAMESPACE + "loginMember",paramMap);
+		return resultVO;
+	}
+
+	@Override
+	public MemberVO loginMember(MemberVO vo) {
+		logger.debug(" loginMember(MemberVO vo) 실행 ");
+		MemberVO resultVO = sqlSession.selectOne(NAMESPACE + "loginMember", vo);
+		return resultVO;
+	}
+
+	
 }
