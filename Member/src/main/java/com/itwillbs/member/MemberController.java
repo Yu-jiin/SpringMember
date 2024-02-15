@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -61,8 +62,13 @@ public class MemberController {
 		 return "redirect:"+addr ;
 	 }
 	 
-	
-	
+	// 메인 
+	// http://localhost:8088/member/main
+	@GetMapping(value = "/main")
+	 public String memberMainGET() {
+		 logger.debug(" memberMainGet() 실행 ");
+		 return "/member/main";
+	 }
 	
 	
 	

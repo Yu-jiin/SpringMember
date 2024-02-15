@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> /member/login.jsp 로그인 페이지 </h1>
+	<h1> /member/login.jsp 로그인 페이지 개인 </h1>
 	
 	<fieldset>
 		<legend>로그인</legend>
