@@ -1,5 +1,7 @@
 package com.itwillbs.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -144,7 +146,18 @@ public class MemberController {
 	}
 	
 	
-	
+	// 관리자가 보는 회원정보목록
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String memberListGET(HttpSession session, Model model) {
+		logger.debug(" memberListGET() 실행 ");
+		String id = (String)session.getAttribute("id");
+		if(id == null || !id.equals("admin")) {
+			return "redirect:/member/login";
+		} 
+		List<MemberVO> memberList = mService.memberList();
+		model.addAttribute("memberList", memberList);
+		return "/member/list";
+	}
 	
 	
 	

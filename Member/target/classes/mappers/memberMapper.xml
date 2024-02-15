@@ -42,8 +42,10 @@
   	</delete>
   	<!-- 회원정보 삭제 -->
   	
-  	
-  	
+  	<!-- 회원목록정보 조회 -->
+  	<select id="getMemberList" resultType="MemberVO">
+  		select * from tbl_member
+  	</select>
   	
   	
   	

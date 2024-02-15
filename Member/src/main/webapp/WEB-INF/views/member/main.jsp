@@ -17,9 +17,9 @@
 	</c:if>
 	
 	<!-- 로그인한 사용자의 아이디를 출력 -->
-	${sessionScope.id } 님 환영합니다. <hr>
-	${id } 님 환영합니다. <hr>
+	${sessionScope.id } 님 환영합니다. <br>
 	
+	<br>
 	
 	<input type="button" value="로그아웃" onclick="location.href='/member/logout';">
 	<!-- <a href="javascript:location.href='/member/logout';">로그아웃</a> -->
