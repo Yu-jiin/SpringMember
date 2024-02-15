@@ -27,7 +27,7 @@ public class HomeController {
 	@Inject
 	private MemberService mService;
 	
-	
+	//http://localhost:8088/web/
 	
 	
 	/**

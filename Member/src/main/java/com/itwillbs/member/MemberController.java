@@ -26,5 +26,7 @@ public class MemberController {
 	public void memberJoinGET() {
 		logger.debug(" memberJoinGET() 실행 ");
 	}
+	
+	
 
 }
