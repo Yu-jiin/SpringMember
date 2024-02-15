@@ -68,5 +68,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.update(NAMESPACE + "updateMember", uvo);
 	}
 
+	@Override
+	public int deleteMember(MemberVO dvo) {
+		logger.debug(" deleteMember(MemberVO vo) 실행 ");
+		return sqlSession.delete(NAMESPACE + "deleteMember", dvo);
+	}
+
 	
 }

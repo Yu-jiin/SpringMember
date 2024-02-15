@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -117,7 +118,30 @@ public class MemberController {
 		return "redirect:"+addr;
 	}
 	
-	
+	// 회원정보 삭제 
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String memberDeleteGET(HttpSession session, Model model) {
+		logger.debug(" memberDeleteGET() 실행 ");
+		String id = (String) session.getAttribute("id");
+		MemberVO resultVO = mService.memberInfo(id);
+		model.addAttribute("resultVO", resultVO);
+		return "/member/delete";
+	}
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String memberDeletePOST(MemberVO vo, HttpSession session) {
+		logger.debug(" memberDeletePOST() 실행 ");
+		int result = mService.memberDelete(vo);
+		String addr = "";
+		if( result != 1) {
+			logger.debug(" 삭제 실패 ");
+			addr = "/member/delete";
+		} else {
+			session.invalidate();
+			logger.debug(" 삭제 성공 ");
+			addr = "/member/main";
+		}
+		return "redirect:"+addr;
+	}
 	
 	
 	

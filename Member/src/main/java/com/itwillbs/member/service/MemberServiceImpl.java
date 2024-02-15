@@ -51,5 +51,11 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.updateMember(vo);
 	}
 
+	@Override
+	public int memberDelete(MemberVO vo) {
+		logger.debug(" memberDelete 실행 ");
+		return mdao.deleteMember(vo);
+	}
+
 	
 }
