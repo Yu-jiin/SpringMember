@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -79,8 +80,15 @@ public class MemberController {
 		 return "redirect:/member/main";
 	 }
 	
-	
-	
+	// 회원정보 조회 
+	// http://localhost:8088/member/info
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	 public void memberInfoGET(HttpSession session, Model model) {
+		 logger.debug(" memberInfoGET() 실행 ");
+		 String id = (String) session.getAttribute("id");
+		 MemberVO resultVO = mService.memberInfo(id);
+		 model.addAttribute("resultVO", resultVO);
+	 }
 	
 	
 	

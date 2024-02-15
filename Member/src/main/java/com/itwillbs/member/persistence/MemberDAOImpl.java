@@ -56,5 +56,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return resultVO;
 	}
 
+	@Override
+	public MemberVO getMember(String userid) {
+		logger.debug(" getMember 호출 ");
+		return sqlSession.selectOne(NAMESPACE + "getMember", userid);
+	}
+
 	
 }

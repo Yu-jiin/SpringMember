@@ -13,5 +13,14 @@ public interface MemberDAO {
 	public MemberVO loginMember(String userid, String userpw);
 	public MemberVO loginMember(MemberVO vo);
 	
+	// 회원정보 자기꺼 조회
+	public MemberVO getMember(String userid);
+	
+	
+	
+	
+	
+	
+	
 	
 }
