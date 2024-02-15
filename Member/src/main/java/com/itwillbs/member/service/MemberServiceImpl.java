@@ -2,9 +2,11 @@ package com.itwillbs.member.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.itwillbs.member.persistence.MemberDAO;
 
+@Service
 public class MemberServiceImpl implements MemberService{
 
 	
