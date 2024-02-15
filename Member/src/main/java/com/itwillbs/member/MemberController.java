@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,17 +48,18 @@ public class MemberController {
 		logger.debug(" memberLoginGET() 호출 ");
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	 public String memberLoginPOST(MemberVO vo, HttpSession session) {
+	 public String memberLoginPOST(MemberVO vo, HttpSession session, Model model) {
 		 logger.debug(" memberLoginPOST(MemberVO vo) 호출 ");
 		 logger.debug(" 로그인 정보 vo : "+vo);
 		 MemberVO resultVO = mService.memberLogin(vo);
 		 String addr = "";
 		 if(resultVO == null) {
 			 logger.debug(" 로그인 실패 ");
+			 model.addAttribute("errorMsg", "회원 정보가 없습니다.");
 			 addr = "/member/login";
 		 } else {
 			 logger.debug(" 로그인 성공 ");
-			 // 로그인 성공한 사용자의 아이디 정보를 세션에 저장
+			 model.addAttribute("successMsg", "로그인 성공");
 			 session.setAttribute("id", resultVO.getUserid());
 			 addr = "/member/main";
 		 }
@@ -130,12 +130,13 @@ public class MemberController {
 		return "/member/delete";
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String memberDeletePOST(MemberVO vo, HttpSession session) {
+	public String memberDeletePOST(MemberVO vo, HttpSession session, Model model) {
 		logger.debug(" memberDeletePOST() 실행 ");
 		int result = mService.memberDelete(vo);
 		String addr = "";
 		if( result != 1) {
 			logger.debug(" 삭제 실패 ");
+			model.addAttribute("errorMsg", "비밀번호 오류");
 			addr = "/member/delete";
 		} else {
 			session.invalidate();
