@@ -90,8 +90,32 @@ public class MemberController {
 		 model.addAttribute("resultVO", resultVO);
 	 }
 	
-	
-	
+	// 회원정보 수정
+	// http://localhost:8088/member/update
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void memberUpdateGET(HttpSession session, Model model) {
+		logger.debug(" memberUpdateGET() 실행 ");
+		String id = (String) session.getAttribute("id");
+		MemberVO resultVO = mService.memberInfo(id);
+		logger.debug(" resultVO : "+resultVO);
+		model.addAttribute("resultVO", resultVO);
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String memberUpdatePOST(MemberVO vo, HttpSession session) {
+		logger.debug(" memberUpdatePOST() 실행 ");
+		logger.debug(" 수정 정보 : "+vo);
+		int result = mService.memberUpdate(vo);
+		logger.debug(" 결과 : "+result);
+		String addr = "";
+		if(result != 1) {
+			logger.debug(" 수정 실패 ");
+			addr = "/member/update";
+		} else {
+			logger.debug(" 수정 성공 ");
+			addr = "/member/main";
+		}
+		return "redirect:"+addr;
+	}
 	
 	
 	

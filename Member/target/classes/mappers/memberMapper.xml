@@ -28,5 +28,22 @@
   		where userid = #{userid}
   	</select>
   	
+  	<!-- 회원정보 수정 -->
+  	<update id="updateMember">
+  		update tbl_member
+  		set username = #{username} , updatedate = now()
+  		where userid=#{userid} and userpw = #{userpw}
+  	</update>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   </mapper>
